@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Processing Tool</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1, h2 {
+            font-weight: 700;
+            color: #004d40;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background-color: #00695c;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .card-body {
+            background-color: #e0f2f1;
+        }
+
+        .btn-custom {
+            background-color: #004d40;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: background-color 0.3s ease-in-out, transform 0.2s;
+        }
+
+        .btn-custom:hover {
+            background-color: #00796b;
+            transform: translateY(-3px);
+        }
+
+        .results-table th, .results-table td {
+            text-align: center;
+        }
+
+        .table-container {
+            max-height: 500px;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border: 2px solid #004d40;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .card-img-top {
+            max-width: 100%;
+            max-height: 200px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .card-img-top:hover {
+            transform: scale(1.05);
+        }
+
+        .row {
+            margin-bottom: 30px;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .card, .btn-custom, .table-container, .card-img-top {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .navbar-custom {
+            background-color: #004d40;
+            padding: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-custom a {
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #004d40;
+            color: #ffffff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .btn-custom {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    {% include 'includes/navbar.html' %}
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Invoice Processing Tool</h1>
+
+        <!-- Run Functions Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                Run Processing Functions
+            </div>
+            <div class="card-body">
+                <form action="{% url 'run_utils' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-custom btn-lg btn-block">Run Processing</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Detected Areas Section -->
+        <div id="detected-areas-section" class="mt-4">
+            <h2 class="text-center mb-4">Detected Areas</h2>
+            <div class="card">
+                <div class="card-header">
+                    Detected Images
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for image in detected_images %}
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <img src="{{ image.url }}" class="card-img-top" alt="Detected Area">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CSV Data Section -->
+        <div id="csv-data-section" class="mt-4">
+            <h2 class="text-center mb-4">CSV Data</h2>
+            <div class="card">
+                <div class="card-header">
+                    Dataset
+                </div>
+                <div class="card-body table-container">
+                    {{ dataset_html|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Invoice Tool. All rights reserved.
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Show the results section when the form is submitted
+        document.querySelector('form').addEventListener('submit', function() {
+            document.getElementById('detected-areas-section').style.display = 'block';
+            document.getElementById('csv-data-section').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

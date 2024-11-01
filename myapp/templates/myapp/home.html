@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to OCR App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url("http://127.0.0.1:8000/media/gifs/squidgame.gif") no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        h1, p {
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+            text-align: center; /* Center text */
+        }
+
+        .jumbotron {
+            background-color: rgba(0, 77, 64, 0.9); /* Semi-transparent */
+            color: #fff;
+            padding: 40px 20px; /* Increased padding */
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+            margin: 50px auto; /* Center jumbotron */
+            max-width: 800px; /* Stretch horizontally */
+        }
+
+        .jumbotron h1 {
+            font-size: 2.5rem; /* Larger title */
+        }
+
+        .jumbotron p {
+            font-size: 1.2rem; /* Larger paragraph */
+        }
+
+        .btn-custom {
+            background-color: #004d40;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: background-color 0.6s ease-in-out, transform 0.5s;
+            margin-top: 20px; /* Add space above button */
+        }
+
+        .btn-custom:hover {
+            background-color: white;
+            color: #004d40; /* Change text color on hover */
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #004d40;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .jumbotron { padding: 30px 15px; } /* Adjust padding for smaller screens */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    {% include 'includes/navbar.html' %}
+
+    <!-- Main Content -->
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to the OCR App!</h1><br>
+        <p class="lead">A simple yet powerful tool to process and analyze text from images using Optical Character Recognition.<br>__________________________</p>
+        
+        <p>Get started by clicking below to explore our features.</p>
+        <a class="btn btn-custom btn-lg" id="get-started" href="{% url 'features' %}" role="button">Get Started</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 OCR App. All rights reserved.
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const getStartedBtn = document.getElementById('get-started');
+        getStartedBtn.addEventListener('mouseenter', () => {
+            // Add your animation logic here if needed
+        });
+    </script>
+</body>
+</html>

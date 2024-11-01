@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Future Invoice</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1, h2 {
+            font-weight: 700;
+            color: #004d40;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        .btn-custom {
+            background-color: #004d40;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: background-color 0.3s ease-in-out, transform 0.2s;
+        }
+
+        .btn-custom:hover {
+            background-color: #00796b;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #004d40;
+            color: #ffffff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    {% include 'includes/navbar.html' %}
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Predict Future Invoice Value</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="date">Enter Date (dd/mm/yyyy):</label>
+                <input type="text" name="date" id="date" class="form-control" placeholder="dd/mm/yyyy" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Submit</button>
+        </form>
+
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+        {% endif %}
+
+        {% if prediction %}
+        <div class="mt-4">
+            <h2 class="text-center">Predicted Invoice Value</h2>
+            <p class="text-center" style="font-size: 1.5rem; color: #004d40;">
+                Estimated Invoice: <strong>${{ prediction }}</strong>
+            </p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Invoice Tool. All rights reserved.
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
