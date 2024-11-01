@@ -72,5 +72,3 @@ Contributions are welcome! If you have suggestions for improvements or want to r
 
 License
 This project is licensed under the MIT License. See the LICENSE file for more details.
-
-Make sure to replace the placeholder paths with actual paths to your images. This structure provides a comprehensive overview of your project while showcasing its features visually!
