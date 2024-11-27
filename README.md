@@ -1,10 +1,10 @@
 # **Invoice Processing Tool**
 ![image](https://github.com/user-attachments/assets/1019aec6-83df-4f0c-9383-2b895908897f)
 
-
+<br>
 Overview :
 The Invoice Processing Tool is designed to automate the extraction and prediction of future invoice values from electricity bills. The application utilizes Optical Character Recognition (OCR) to parse data from invoice images and provides a user-friendly interface to interact with the processed data.
-
+<br>
 Features :
 Image Upload: Users can upload images of electricity invoices.
 Data Extraction: The tool extracts relevant data from invoices using OCR.
@@ -12,7 +12,7 @@ Future Prediction: Predicts future invoice values based on historical data.
 Data Visualization: Displays processed data in a user-friendly format.
 ![image](https://github.com/user-attachments/assets/9d17d101-6486-41d0-b859-2f7f37f1af44)
 
-
+<br>
 Technologies Used :
 Django
 Python
