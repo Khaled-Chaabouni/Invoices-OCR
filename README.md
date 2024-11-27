@@ -24,8 +24,9 @@ Getting Started
 Prerequisites
 Python 3.x
 Django
-Necessary Python packages (as specified in requirements.txt)
-Installation
+Necessary Python packages (as specified in requirements.txt).
+\n
+Installation :
 Clone the repository:
 
 bash
