@@ -25,7 +25,7 @@ Prerequisites
 Python 3.x
 Django
 Necessary Python packages (as specified in requirements.txt).
-\n
+<br>
 Installation :
 Clone the repository:
 
